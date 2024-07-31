@@ -1,11 +1,24 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
     background-color: #282828;
     color: white;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .header {
     display: flex;
     justify-content: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
 }
 
 .timer {
@@ -14,3 +27,14 @@ body {
     border: 5px solid white;
 }
 
+.footer {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    margin: 0;
+}
