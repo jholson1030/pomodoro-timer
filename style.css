@@ -1,0 +1,16 @@
+body {
+    background-color: #282828;
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    border: 5px solid white;
+}
+
