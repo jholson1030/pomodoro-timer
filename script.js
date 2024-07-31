@@ -15,3 +15,9 @@ let breakDuration = 5 * 60; // 5 minutes in seconds
 let remainingBreakTime = breakDuration;
 let breakInterval;
 
+// Function to update the display
+function updateDisplay() {
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
+    display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
