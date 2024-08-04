@@ -7,7 +7,7 @@ const resetButton = document.querySelector('.reset');
 
 
 // Timer variables
-let timerDuration = 25 * 60; // 25 minutes in seconds
+let timerDuration = 1 * 60; // 25 minutes in seconds
 let remainingTime = timerDuration;
 let timerInterval;
 let isRunning = false; // Trach whether the timer is running
@@ -15,6 +15,24 @@ let isRunning = false; // Trach whether the timer is running
 let breakDuration = 5 * 60; // 5 minutes in seconds
 let remainingBreakTime = breakDuration;
 let breakInterval;
+
+// Alarm sounds
+let slimeSquish = new Audio('./slime-squish-12-219047.mp3');
+slimeSquish.volume = 1.0;
+
+let slimePlayCount = 0;
+const maxSlimePlays = 5;
+
+// Function to play slimeSquish
+function playSlime() {
+    if (slimePlayCount < maxSlimePlays) {
+        slimeSquish.play();
+        slimePlayCount++;
+    }
+}
+
+// Event listener for when the alarm ends
+slimeSquish.addEventListener('ended', playSlime);
 
 // Function to update the display
 function updateDisplay() {
@@ -33,6 +51,8 @@ function startTimer() {
             if (remainingTime <= 0) {
                 clearInterval(timerInterval);
                 isRunning = false;
+                slimePlayCount = 0; // Reset play count
+                slimeSquish.play(); // Play alarm
             }
         }, 1000);
     }
