@@ -10,6 +10,7 @@ const resetButton = document.querySelector('.reset');
 let timerDuration = 25 * 60; // 25 minutes in seconds
 let remainingTime = timerDuration;
 let timerInterval;
+let isRunning = false; // Trach whether the timer is running
 
 let breakDuration = 5 * 60; // 5 minutes in seconds
 let remainingBreakTime = breakDuration;
@@ -24,19 +25,23 @@ function updateDisplay() {
 
 // Start timer function
 function startTimer() {
-    timerInterval = setInterval(() => {
-        remainingTime--;
-        updateDisplay();
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval);
-        }
-    }, 1000);
-    
+    if (!isRunning) {
+        isRunning = true;
+        timerInterval = setInterval(() => {
+            remainingTime--;
+            updateDisplay();
+            if (remainingTime <= 0) {
+                clearInterval(timerInterval);
+                isRunning = false;
+            }
+        }, 1000);
+    }
 }
 
 // Stop timer function
 function stopTimer() {
     clearInterval(timerInterval);
+    isRunning = false;
 }
 
 // Reset timer function
@@ -44,6 +49,7 @@ function resetTimer() {
     clearInterval(timerInterval);
     remainingTime = timerDuration;
     updateDisplay();
+    isRunning = false;
 }
 
 // Event listeners
