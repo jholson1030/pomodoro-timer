@@ -7,7 +7,7 @@ const resetButton = document.querySelector('.reset');
 
 
 // Timer variables
-let timerDuration = 1 * 60; // 25 minutes in seconds
+let timerDuration = 25 * 60; // 25 minutes in seconds
 let remainingTime = timerDuration;
 let timerInterval;
 let isRunning = false; // Trach whether the timer is running
@@ -15,6 +15,7 @@ let isRunning = false; // Trach whether the timer is running
 let breakDuration = 5 * 60; // 5 minutes in seconds
 let remainingBreakTime = breakDuration;
 let breakInterval;
+let isBreakRunning = false;
 
 // Alarm sounds
 let slimeSquish = new Audio('./slime-squish-12-219047.mp3');
@@ -39,6 +40,21 @@ function updateDisplay() {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
     display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+// Start break timer
+function startBreakTimer() {
+    isBreakRunning = true;
+    remainingBreakTime = breakDuration; // Reset break time
+    updateDisplay();
+    breakInterval = setInterval(() => {
+        remainingBreakTime--;
+        updateDisplay();
+        if (remainingBreakTime <= 0) {
+            clearInterval(breakInterval);
+            isBreakRunning = false;
+        }
+    }, 1000);
 }
 
 // Start timer function
