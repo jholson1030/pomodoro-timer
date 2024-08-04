@@ -21,3 +21,14 @@ function updateDisplay() {
     const seconds = remainingTime % 60;
     display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
+
+// Start timer function
+function startTimer() {
+    timerInterval = setInterval(() => {
+        remainingTime--;
+        updateDisplay();
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+        }
+    }, 1000);
+}
