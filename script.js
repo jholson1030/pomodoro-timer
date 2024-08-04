@@ -7,7 +7,7 @@ const resetButton = document.querySelector('.reset');
 
 
 // Timer variables
-let timerDuration = 25 * 60; // 25 minutes in seconds
+let timerDuration = 1 * 60; // 25 minutes in seconds
 let remainingTime = timerDuration;
 let timerInterval;
 let isRunning = false; // Trach whether the timer is running
@@ -37,8 +37,17 @@ slimeSquish.addEventListener('ended', playSlime);
 
 // Function to update the display
 function updateDisplay() {
-    const minutes = Math.floor(remainingTime / 60);
-    const seconds = remainingTime % 60;
+    let minutes, seconds;
+    if (isRunning) {
+        minutes = Math.floor(remainingTime / 60);
+        seconds = remainingTime % 60;
+    } else if (isBreakRunning) {
+        minutes = Math.floor(remainingBreakTime / 60);
+        seconds = remainingBreakTime % 60;
+    } else {
+        minutes = Math.floor(timerDuration / 60);
+        seconds = timerDuration % 60;
+    }
     display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
@@ -78,6 +87,7 @@ function startTimer() {
 // Stop timer function
 function stopTimer() {
     clearInterval(timerInterval);
+    clearInterval(breakInterval);
     isRunning = false;
     isBreakRunning = false;
 }
@@ -85,7 +95,9 @@ function stopTimer() {
 // Reset timer function
 function resetTimer() {
     clearInterval(timerInterval);
+    clearInterval(breakInterval);
     remainingTime = timerDuration;
+    remainingBreakTime = breakDuration;
     updateDisplay();
     isRunning = false;
     isBreakRunning = false;
