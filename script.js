@@ -69,6 +69,7 @@ function startTimer() {
                 isRunning = false;
                 slimePlayCount = 0; // Reset play count
                 slimeSquish.play(); // Play alarm
+                startBreakTimer();
             }
         }, 1000);
     }
@@ -78,6 +79,7 @@ function startTimer() {
 function stopTimer() {
     clearInterval(timerInterval);
     isRunning = false;
+    isBreakRunning = false;
 }
 
 // Reset timer function
@@ -86,6 +88,7 @@ function resetTimer() {
     remainingTime = timerDuration;
     updateDisplay();
     isRunning = false;
+    isBreakRunning = false;
 }
 
 // Event listeners
