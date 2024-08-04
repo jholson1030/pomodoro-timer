@@ -7,7 +7,7 @@ const resetButton = document.querySelector('.reset');
 
 
 // Timer variables
-let timerDuration = 1 * 60; // 25 minutes in seconds
+let timerDuration = 25 * 60; // 25 minutes in seconds
 let remainingTime = timerDuration;
 let timerInterval;
 let isRunning = false; // Trach whether the timer is running
