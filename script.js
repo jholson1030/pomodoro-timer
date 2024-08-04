@@ -34,9 +34,9 @@ function startTimer() {
 }
 
 // Stop timer function
-function stopTimer() (
+function stopTimer() {
     clearInterval(timerInterval);
-)
+}
 
 // Reset timer function
 function resetTimer() {
