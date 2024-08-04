@@ -32,3 +32,16 @@ function startTimer() {
         }
     }, 1000);
 }
+
+// Stop timer function
+function stopTimer() (
+    clearInterval(timerInterval);
+)
+
+// Reset timer function
+function resetTimer() {
+    clearInterval(timerInterval);
+    remainingTime = timerDuration;
+    updateDisplay();
+}
+
