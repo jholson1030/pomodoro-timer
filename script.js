@@ -67,7 +67,7 @@ function startTimer() {
                 isRunning = false;
                 cycleCount++; // Incriment the cycle count
                 playSlime(); // Play the alarm
-                handleCycleEnd(); // Determine what happens next
+                setTimeout(handleCycleEnd, 1000); // Determine what happens next
             }
         }, 1000);
     }
