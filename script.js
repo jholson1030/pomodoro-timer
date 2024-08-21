@@ -76,7 +76,13 @@ function startTimer() {
 // Function to handle the end of a work/break cycle
 function handleCycleEnd() {
     if (cycleCount % 2 === 1) { // After a work session
-
+        breakButton.style.display = 'block'; // Show the break button
+    } else if (cycleCount % 2 === 0) { // After a break session
+        workButton.style.display = 'block'; // Show work button
+        breakButton.style.display = 'none'; // Hide break button
+        if (cycleCount === 6) { // After three work sessions and two breaks
+            breakDuration = 15 * 60; // Set to 15 minutes
+        } 
     }
 }
 
