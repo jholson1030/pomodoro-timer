@@ -131,6 +131,14 @@ function resetTimer() {
 startButton.addEventListener('click', startTimer);
 stopButton.addEventListener('click', stopTimer);
 resetButton.addEventListener('click', resetTimer);
+breakButton.addEventListener('click', () => {
+    breakButton.style.display = 'none'; // Hide break button after clicking on it
+    startBreakTimer();
+});
+workButton.addEventListener('click', () => {
+    workButton.style.display = 'none'; // Hide work button after clicking on it
+    startTimer();
+});
 
 // Initialize display
 updateDisplay();
