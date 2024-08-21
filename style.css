@@ -9,11 +9,16 @@ body {
     width: 100%;
     margin: 0 auto;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .header {
     display: flex;
     justify-content: center;
+    margin-bottom: 10%;
 }
 
 h1 {
@@ -23,8 +28,18 @@ h1 {
 
 .timer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     border: 5px solid white;
+    height: 15%;
+    width: 25%;
+    padding: 50px;
+    color: firebrick;
+}
+
+.display {
+    font-size: 50px;
 }
 
 .footer {
