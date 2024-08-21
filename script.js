@@ -99,7 +99,7 @@ function startBreakTimer() {
                 clearInterval(breakInterval);
                 isBreakRunning = false;
                 playSlime();
-                handleCycleEnd();
+                setTimeout(handleCycleEnd, 1000); // Delay cycle handling slightly to ensure sound plays
             }
         }, 1000);
     }
