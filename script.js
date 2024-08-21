@@ -122,6 +122,9 @@ function resetTimer() {
     updateDisplay();
     isRunning = false;
     isBreakRunning = false;
+    cycleCount = 0; // Reset cycle count
+    breakButton.style.display = 'none';
+    workButton.style.display = 'none';
 }
 
 // Event listeners
