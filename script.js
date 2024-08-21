@@ -4,6 +4,8 @@ const display = document.querySelector('.display');
 const startButton = document.querySelector('.start');
 const stopButton = document.querySelector('.stop');
 const resetButton = document.querySelector('.reset');
+const breakButton = document.querySelector('.break');
+const workButton = document.querySelector('.work');
 
 
 // Timer variables
@@ -17,12 +19,14 @@ let remainingBreakTime = breakDuration;
 let breakInterval;
 let isBreakRunning = false;
 
+let cycleCount = 0; //Track the number of work-break cycles
+
 // Alarm sounds
 let slimeSquish = new Audio('./slime-squish-12-219047.mp3');
 slimeSquish.volume = 1.0;
 
 let slimePlayCount = 0;
-const maxSlimePlays = 5;
+const maxSlimePlays = 4;
 
 // Function to play slimeSquish
 function playSlime() {
@@ -51,22 +55,7 @@ function updateDisplay() {
     display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-// Start break timer
-function startBreakTimer() {
-    isBreakRunning = true;
-    remainingBreakTime = breakDuration; // Reset break time
-    updateDisplay();
-    breakInterval = setInterval(() => {
-        remainingBreakTime--;
-        updateDisplay();
-        if (remainingBreakTime <= 0) {
-            clearInterval(breakInterval);
-            isBreakRunning = false;
-        }
-    }, 1000);
-}
-
-// Start timer function
+// Function to start the work timer
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
@@ -76,11 +65,18 @@ function startTimer() {
             if (remainingTime <= 0) {
                 clearInterval(timerInterval);
                 isRunning = false;
-                slimePlayCount = 0; // Reset play count
-                slimeSquish.play(); // Play alarm
-                startBreakTimer();
+                cycleCount++; // Incriment the cycle count
+                playSlime(); // Play the alarm
+                handleCycleEnd(); // Determine what happens next
             }
         }, 1000);
+    }
+}
+
+// Function to handle the end of a work/break cycle
+function handleCycleEnd() {
+    if (cycleCount % 2 === 1) { // After a work session
+
     }
 }
 
