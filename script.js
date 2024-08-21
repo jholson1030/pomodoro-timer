@@ -86,6 +86,25 @@ function handleCycleEnd() {
     }
 }
 
+// Function to start break timer
+function startBreakTimer() {
+    if (!isBreakRunning) {
+        isBreakRunning = true;
+        remainingBreakTime = breakDuration; // Reset break time
+        updateDisplay();
+        breakInterval = setInterval(() => {
+            remainingBreakTime--;
+            updateDisplay();
+            if (remainingBreakTime <= 0) {
+                clearInterval(breakInterval);
+                isBreakRunning = false;
+                playSlime();
+                handleCycleEnd();
+            }
+        }, 1000);
+    }
+}
+
 // Stop timer function
 function stopTimer() {
     clearInterval(timerInterval);
